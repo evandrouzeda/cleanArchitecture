@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.o-scroll {
+    overflow: scroll;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.gap-g {
+    gap: 1em;
+}
+
+.gap-m {
+    gap: .5em;
+}
+
+.gap-p {
+    gap: .2em;
+}
+
+.p-10 {
+    padding: 10px;
+}
