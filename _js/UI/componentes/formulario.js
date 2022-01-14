@@ -6,8 +6,9 @@ export default class Formulario extends Componente {
         super("formulario")
         this.adaptador = adaptador
         const campos = adaptador.pegaCampos()
+        console.log(campos);
         this.main = document.createElement("form")
-        for (const key in adaptador) {
+        for (const key in campos) {
             const [component, err] = new FactoryFormElements().make(campos[key])
             if (err) console.warn(`${key} não implementado`)
             else {

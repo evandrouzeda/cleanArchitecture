@@ -11,12 +11,14 @@ import ListaHorizontal from "./UI/componentes/listaHorizontal.js";
 import { Controlador, Visao } from "./UI/formulario.js";
 import AdaptadorEstacionamento from "./Nucleo/adaptador/estacionamento.js";
 import Formulario from "./UI/componentes/formulario.js";
+import Modal from "./UI/componentes/modal.js";
+import AdaptadorCriaVaga from "./Nucleo/adaptador/criaVaga.js";
 
 const memoria = new Memoria()
 const localRepo = new LocalStorage()
 const estacionamento = new CriarEstacionamento(memoria).executar({nome: "Zezinho"})
 console.log(memoria)
-const vaga = new CriaVaga(memoria).executar(estacionamento.id)
+const vaga = new CriaVaga(memoria).executar({numero: 1, estacionamento: estacionamento.id})
 const carro = new CriarCarro(memoria).executar("honda", "2339lfoj")
 new CriarCarro(memoria).executar("audi", "lkas9erp")
 new CriarCarro(memoria).executar("ferrari", "fl5qe4r2")
@@ -57,13 +59,39 @@ console.log(listaCarros);
     button.innerText = "Criar Estacionamento"
     button.onclick = () => {
         console.log("teste");
-        const btn = document.createElement("button")
         const adaptador = new AdaptadorEstacionamento("")
         const criaEstacionamento = new CriarEstacionamento(memoria)
-        new Formulario(adaptador, app, btn, criaEstacionamento.executar.bind(criaEstacionamento))
-        btn.innerText = "salvar"
-        app.appendChild(btn)
-        console.log(memoria);
+        const modal = new Modal(app, "Criar Estacionamento", "Salvar")
+        new Formulario(adaptador, modal.body, modal.confir, adapter => {
+            criaEstacionamento.executar(adapter)
+            modal.remove()
+            console.log(memoria);
+        })
+        /* const modelo = new AdaptadorEstacionamento("")
+        const visao = new Visao(modelo, app);
+        const controlador = new Controlador(visao, modelo, e=>{
+            console.log(e);
+        })
+        console.log(controlador); */
+    }
+    app.appendChild(button)
+
+}());
+
+(function (){
+    
+    const button = document.createElement("button")
+    button.innerText = "Criar Vaga"
+    button.onclick = () => {
+        console.log("teste");
+        const adaptador = new AdaptadorCriaVaga(memoria)
+        const criaEstacionamento = new CriaVaga(memoria)
+        const modal = new Modal(app, "Criar Vaga", "Salvar")
+        new Formulario(adaptador, modal.body, modal.confir, adapter => {
+            criaEstacionamento.executar(adapter)
+            modal.remove()
+            console.log(memoria);
+        })
         /* const modelo = new AdaptadorEstacionamento("")
         const visao = new Visao(modelo, app);
         const controlador = new Controlador(visao, modelo, e=>{

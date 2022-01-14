@@ -166,15 +166,18 @@ export class Select extends FormElement {
         const label = document.createElement("label")
         label.innerText = this.label
         div.appendChild(label)
-        const select = document.createElement("select")
+        this.select = document.createElement("select")
         this.list.forEach(item => {
             const e = document.createElement("option")
-            e.value = item.value
-            e.innerText = item.name
-            select.appendChild(e)
+            e.value = item.id
+            e.innerText = item.nome
+            this.select.appendChild(e)
         })
-        div.appendChild(select)
+        div.appendChild(this.select)
         return div
+    }
+    getValue() {
+        return this.select.value
     }
 }
 

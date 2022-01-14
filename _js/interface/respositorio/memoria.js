@@ -15,6 +15,9 @@ export default class Memoria extends Repositorio{
         return this.map[colecao] ? this.map[colecao].find(e=>e.id === id) : {}
     }
 
+    pegaVarios(colecao){
+        return this.map[colecao] ? this.map[colecao] : []
+    }
     pegaPorPlaca(placa) {
         return this.map["Carros"] ? this.map["Carros"].find(e=>e.placa = placa): {}
     }
