@@ -6,9 +6,9 @@ export default class CriarEstacionamento {
         this.repositorio = repositorio
     }
 
-    executar(nome){
+    executar(adaptador){
         console.log("criando estacionamento");
-        const estacionamento = new Estacionamento(nome)
+        const estacionamento = new Estacionamento(adaptador.nome)
         this.repositorio.save("Estacionamentos", estacionamento)
         return estacionamento
     }
