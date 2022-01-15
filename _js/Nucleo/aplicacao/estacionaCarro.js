@@ -1,6 +1,7 @@
 import Repositorio from "../../interface/respositorio/_repositorio.js";
 
 export default class EstacionaCarro {
+    nome= "Estaciona Carro"
     /**
      * 
      * @param {Repositorio} repositorio 
@@ -9,9 +10,9 @@ export default class EstacionaCarro {
         this.repositorio = repositorio
     }
 
-    executar(carroid, vagaid){
-        const carro = this.repositorio.pegaPorId("Carros", carroid)
-        const vaga = this.repositorio.pegaPorId("Vagas", vagaid)
+    executar(adaptador){
+        const carro = this.repositorio.pegaPorId("Carros", adaptador.carro)
+        const vaga = this.repositorio.pegaPorId("Vagas", adaptador.vaga)
         console.log(vaga);
         if(vaga.vago){
             vaga.vago = false

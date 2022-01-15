@@ -6,9 +6,9 @@ export default class CriarCarro {
         this.repositorio = repositorio
     }
 
-    executar(nome, placa){
+    executar(adaptador){
         console.log("criando carro");
-        const carro = new Carro(nome, placa)
+        const carro = new Carro(adaptador.nome, adaptador.placa)
         this.repositorio.save("Carros", carro)
         return carro
     }

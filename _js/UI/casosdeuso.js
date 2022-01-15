@@ -1,12 +1,32 @@
+import FactoryUIAdaptador from "../Nucleo/factory/uiAdaptador.js"
+import Formulario from "./componentes/formulario.js"
+import Modal from "./componentes/modal.js"
+
 export default class CasosDeUso {
-    constructor(lista){
+    constructor(lista) {
         this.lista = lista
     }
-    show(destino){
+    show(destino) {
+        const ui = new FactoryUIAdaptador()
         this.lista.forEach(caso => {
             const button = document.createElement("button")
             button.innerText = caso.nome
-            button.onclick = caso.executar
+            button.onclick = _ => {
+                console.log(ui.classesMap);
+                console.log(caso.constructor.name);
+                const [adaptador, err] = ui.create(caso.constructor.name)
+                if(err) console.error("nao implementado: "+ caso.constructor.name)
+                else{
+                    console.log(adaptador);
+                    
+                    const modal = new Modal(app, "Criar Vaga", "Salvar")
+                    new Formulario(new adaptador(caso.repositorio), modal.body, modal.confir, a => {
+                        caso.executar(a)
+                        modal.remove()
+                        console.log(caso.repositorio);
+                    })
+                }
+            }
             destino.appendChild(button)
         })
     }

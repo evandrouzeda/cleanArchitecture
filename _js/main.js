@@ -19,11 +19,8 @@ const localRepo = new LocalStorage()
 const estacionamento = new CriarEstacionamento(memoria).executar({nome: "Zezinho"})
 console.log(memoria)
 const vaga = new CriaVaga(memoria).executar({numero: 1, estacionamento: estacionamento.id})
-const carro = new CriarCarro(memoria).executar("honda", "2339lfoj")
-new CriarCarro(memoria).executar("audi", "lkas9erp")
-new CriarCarro(memoria).executar("ferrari", "fl5qe4r2")
-new CriarCarro(memoria).executar("lamborghini", "0foisj2w")
-console.log(new EstacionaCarro(memoria).executar(carro.id, vaga.id));
+const carro = new CriarCarro(memoria).executar({nome: "honda", placa: "2339lfoj"})
+console.log(new EstacionaCarro(memoria).executar({carro: carro.id, vaga: vaga.id}));
 new RemoveCarro(memoria).executar(carro.placa)
 console.log(carro);
 const cria = new CriarCarro(localRepo)
@@ -52,53 +49,3 @@ memoria.map["Carros"].forEach(c => {
 
 listaCarros.mostrar(app)
 console.log(listaCarros);
-
-(function (){
-    
-    const button = document.createElement("button")
-    button.innerText = "Criar Estacionamento"
-    button.onclick = () => {
-        console.log("teste");
-        const adaptador = new AdaptadorEstacionamento("")
-        const criaEstacionamento = new CriarEstacionamento(memoria)
-        const modal = new Modal(app, "Criar Estacionamento", "Salvar")
-        new Formulario(adaptador, modal.body, modal.confir, adapter => {
-            criaEstacionamento.executar(adapter)
-            modal.remove()
-            console.log(memoria);
-        })
-        /* const modelo = new AdaptadorEstacionamento("")
-        const visao = new Visao(modelo, app);
-        const controlador = new Controlador(visao, modelo, e=>{
-            console.log(e);
-        })
-        console.log(controlador); */
-    }
-    app.appendChild(button)
-
-}());
-
-(function (){
-    
-    const button = document.createElement("button")
-    button.innerText = "Criar Vaga"
-    button.onclick = () => {
-        console.log("teste");
-        const adaptador = new AdaptadorCriaVaga(memoria)
-        const criaEstacionamento = new CriaVaga(memoria)
-        const modal = new Modal(app, "Criar Vaga", "Salvar")
-        new Formulario(adaptador, modal.body, modal.confir, adapter => {
-            criaEstacionamento.executar(adapter)
-            modal.remove()
-            console.log(memoria);
-        })
-        /* const modelo = new AdaptadorEstacionamento("")
-        const visao = new Visao(modelo, app);
-        const controlador = new Controlador(visao, modelo, e=>{
-            console.log(e);
-        })
-        console.log(controlador); */
-    }
-    app.appendChild(button)
-
-}());
