@@ -12,13 +12,9 @@ export default class CasosDeUso {
             const button = document.createElement("button")
             button.innerText = caso.nome
             button.onclick = _ => {
-                console.log(ui.classesMap);
-                console.log(caso.constructor.name);
                 const [adaptador, err] = ui.create(caso.constructor.name)
                 if(err) console.error("nao implementado: "+ caso.constructor.name)
                 else{
-                    console.log(adaptador);
-                    
                     const modal = new Modal(app, "Criar Vaga", "Salvar")
                     new Formulario(new adaptador(caso.repositorio), modal.body, modal.confir, a => {
                         caso.executar(a)
