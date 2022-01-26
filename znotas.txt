@@ -1,0 +1,5 @@
+tipos de adaptadores para:
+    
+    botao: adaptador possui um parametros para preencher um botao tipo valor do botao e possui um controler que chamara a funcao do botao
+    formulario: contera os campos necessario para executar o caso de uso e contera o controlador que chama o caso de uso
+    apresentacao: contera os elementos que serao mostrados em um componente e um controlador para mostrar um funcao
