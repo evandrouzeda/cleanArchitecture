@@ -12,6 +12,7 @@ import CriarCaso from "./Nucleo/adaptador/botao/CriarCaso.js";
 import FactoryComponentes from "./Nucleo/factory/componentes.js";
 import FactoryCasosDeUso from "./Nucleo/factory/casos.js";
 import FactoryAdaptadorBotao from "./Nucleo/factory/botaoAdaptador.js";
+import FactoryAttribute from "./Nucleo/factory/attribute.js";
 
 const memoria = new Memoria()
 const app = document.getElementById("app")
@@ -22,52 +23,26 @@ const myApp = {
         {
             type: "botao",
             adapter: { type: "criacaso", caso: "criaestacionamento" }
+        },
+        {
+            type: "botao",
+            adapter: { type: "criacaso", caso: "criacarro" }
         }
     ]
 }
+let coisa = {
+    app,
+    repository: memoria
+}
 
 myApp.children.forEach(c => {
-    let componente = {}
-    for (const key in c) {
-        switch (key) {
-            case "type":
-                const [result, err] = new FactoryComponentes().create(c.type)
-                if (err) console.error(`nao implementado ${c.type}`);
-                else {
-                    console.log(result);
-                    //new result(app, new CriarCaso(new CriarEstacionamento(memoria)))
-                    componente = result
-                }
-                break;
-            case "adapter":
-                for (const k in c.adapter) {
-                    switch (k) {
-                        case "type":
-                            const [result, err] = new FactoryAdaptadorBotao().create(c.adapter.type)
-                            if (err) console.error(`nao implementado ${c.adapter.type}`);
-                            else {
-                                const [r, e] = new FactoryCasosDeUso().create(c.adapter.caso)
-                                if (e) console.error(`nao implementado ${c.adapter.caso}`);
-                                else {
-                                    new componente(app, new result(new r(memoria)))
-                                }
-                            }
-                            break;
-                        case "caso":
-                            /* const [r, e] = new FactoryCasosDeUso().create(c.adapter.caso)
-                            if (e) console.error(`nao implementado ${c.adapter.caso}`);
-                            else {
-                                new componente(app, new result(new r(memoria)))
-                            } */
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                console.log(c[key]);
-                break;
-            default:
-                break;
+    for (const key in c) {  
+        console.log(coisa);
+        coisa.c = c
+        const [attribute, err] = new FactoryAttribute().create(key)
+        if (err) { console.error(err); continue }
+        else{
+            coisa = new attribute().execute(coisa)
         }
     }
 })
