@@ -1,7 +1,8 @@
+import LocalStorage from "./interface/respositorio/localstorage.js";
 import Memoria from "./interface/respositorio/memoria.js";
 import FactoryAttribute from "./Nucleo/factory/attribute.js";
 
-const memoria = new Memoria()
+const memoria = new LocalStorage()
 const app = document.getElementById("app")
 //new Botao(app, new CriarCaso(new CriarEstacionamento(memoria)))
 
@@ -14,6 +15,14 @@ const myApp = {
         {
             type: "botao",
             adapter: { type: "criacaso", usecase: "criacarro" }
+        },
+        {
+            type: "listahorizontal",
+            list: {
+                collection: "Carros",
+                component: {type: "card", adapter:{type: "carroCard", usecase: "mostraCarro"}}
+            },
+            title: "Lista de Carros",
         }
     ]
 }
@@ -28,8 +37,9 @@ myApp.children.forEach(c => {
     }
     for (const key in c) {
         const [attribute, err] = new FactoryAttribute().create(key)
-        if (err) { console.error(err); continue }
+        if (err) { console.error(`invalid attribute: ${key}`); continue }
         else{
+            console.log(coisa)
             coisa = new attribute().execute(coisa)
         }
     }
