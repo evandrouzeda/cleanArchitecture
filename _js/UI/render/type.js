@@ -1,19 +1,20 @@
 import FactoryComponentes from "../../Nucleo/factory/componentes.js";
+import FactoryFactorys from "../../Nucleo/factory/factorys.js";
 import Attribute from "./_attribute.js";
 
 export default class Type extends Attribute {
-    constructor(){
+    constructor() {
         super("type")
     }
 
     execute(obj) {
-        const [result, err] = new FactoryComponentes().create(obj.c.type)
-        if (err) console.error(`nao implementado ${obj.c.type}`);
+        const [factory, error] = new FactoryFactorys().create(obj.creating)
+        if (error) console.error(`invalid factory ${obj.creating}`);
         else {
-            console.log(result);
-            //new result(app, new CriarCaso(new CriarEstacionamento(memoria)))
-            obj.component = result
+            const [result, err] = new factory().create(obj.type)
+            if (err) console.error(`nao implementado "${obj.type}" no factory: ${factory.name}`);
+            else obj[obj.creating] = result
         }
-         return obj
+        return obj
     }
 }
