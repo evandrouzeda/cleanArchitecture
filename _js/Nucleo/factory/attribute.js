@@ -1,5 +1,6 @@
 import Adapter from "../../UI/render/adapter.js";
 import List from "../../UI/render/list.js";
+import Title from "../../UI/render/title.js";
 import Type from "../../UI/render/type.js";
 import UseCase from "../../UI/render/useCase.js";
 import Factory from "./_factory.js";
@@ -11,7 +12,8 @@ export default class FactoryAttribute extends Factory {
             "type": Type,
             "adapter": Adapter,
             "usecase": UseCase,
-            "list": List
+            "list": List,
+            "title": Title
         }
     }
 }

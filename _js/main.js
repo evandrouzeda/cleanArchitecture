@@ -18,11 +18,11 @@ const myApp = {
         },
         {
             type: "listahorizontal",
+            title: "Lista de Carros",
             list: {
                 collection: "Carros",
                 component: {type: "card", adapter:{type: "carroCard", usecase: "mostraCarro"}}
             },
-            title: "Lista de Carros",
         }
     ]
 }
