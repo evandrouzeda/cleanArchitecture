@@ -17,7 +17,7 @@ export default class ListaHorizontal extends Componente {
     mostrar(destino) {
         this.visao = new VisaoListaHorizontal(this, destino, this.titulo)
         this.filhos.forEach(c => {
-            this.visao.body.appendChild(c.visao.main)
+            this.visao.body.appendChild(c.main)
         });
     }
 }

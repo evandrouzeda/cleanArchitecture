@@ -21,7 +21,16 @@ const myApp = {
             title: "Lista de Carros",
             list: {
                 collection: "Carros",
-                component: {type: "card", adapter:{type: "carroCard", usecase: "mostraCarro"}}
+                component: {type: "card", adapter:{type: "carrocard"}}
+            },
+        },
+        {
+            type: "listahorizontal",
+            title: "Lista de Estacionamentos",
+            list: {
+                collection: "Estacionamentos",
+                controller: {type: "mostraestacionamento", adapter: {type: "mostraestacionamento"}},
+                component: {type: "card", adapter:{type: "estacionamentocard"}}
             },
         }
     ]

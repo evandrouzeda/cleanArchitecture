@@ -7,3 +7,7 @@ tipos de adaptadores para:
     
 Para fazer o render tenho que dividir cada atributo no estilo SOLID e passar o um objeto do tipo {app, repository, componente, ...} para cada atributo e o filho vai criar o componente. Ex.:
     new obj.componente(obj.app, new obj.adapter(new obj.caso(obj.repository)))
+
+
+
+Tenho que fazer o controler para que vai receber um adapter e um component 

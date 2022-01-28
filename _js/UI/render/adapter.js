@@ -16,6 +16,7 @@ export default class Adapter extends Attribute {
                 obj = new attribute().execute(obj)
             }
         }
+        
         return obj
     }
 }
