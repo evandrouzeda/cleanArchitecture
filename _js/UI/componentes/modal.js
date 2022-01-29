@@ -9,8 +9,10 @@ export default class Modal extends Componente{
         this.modal.classList.add("d-grid", "gap-g", "modal")
         this.h2 = document.createElement("h2")
         this.h2.innerText = titulo
-        this.modal.appendChild(this.h2)
+        //this.modal.appendChild(this.h2)
         this.body = document.createElement("div")
+        this.body.classList.add("d-grid", "gap-g")
+        this.body.appendChild(this.h2)
         this.modal.appendChild(this.body)
         this.footer = document.createElement("div")
         this.footer.classList.add("buttons", "d-grid", "grid-2-col", "gap-m")

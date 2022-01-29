@@ -93,7 +93,7 @@ export class Text extends FormElement {
         div.appendChild(label)
         this.input.type = this.type
         this.input.placeholder = this.placeholder
-        div.classList.add("d-grid", "gap-fin")
+        div.classList.add("d-grid", "gap-p")
         div.appendChild(this.input)
         return div
     }

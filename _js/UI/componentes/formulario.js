@@ -8,6 +8,7 @@ export default class Formulario extends Componente {
         const campos = adaptador.pegaCampos()
         console.log(campos);
         this.main = document.createElement("form")
+        this.main.classList.add("d-grid", "gap-m")
         for (const key in campos) {
             const [component, err] = new FactoryFormElements().make(campos[key])
             if (err) console.warn(`${key} não implementado`)

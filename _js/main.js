@@ -21,7 +21,7 @@ const myApp = {
             title: "Lista de Carros",
             list: {
                 collection: "Carros",
-                component: {type: "card", adapter:{type: "carrocard"}}
+                component: { type: "card", adapter: { type: "carrocard" } }
             },
         },
         {
@@ -29,8 +29,14 @@ const myApp = {
             title: "Lista de Estacionamentos",
             list: {
                 collection: "Estacionamentos",
-                controller: {type: "mostraestacionamento", adapter: {type: "mostraestacionamento"}},
-                component: {type: "card", adapter:{type: "estacionamentocard"}}
+                component: {
+                    type: "card", 
+                    adapter: { type: "estacionamentocard" }, 
+                    controller: { 
+                        type: "mostraestacionamento", 
+                        adapter: { type: "mostraestacionamento" } 
+                    }
+                }
             },
         }
     ]
@@ -47,7 +53,7 @@ myApp.children.forEach(c => {
     for (const key in c) {
         const [attribute, err] = new FactoryAttribute().create(key)
         if (err) { console.error(`invalid attribute: ${key}`); continue }
-        else{
+        else {
             console.log(coisa)
             coisa = new attribute().execute(coisa)
         }
