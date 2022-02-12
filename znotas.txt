@@ -11,3 +11,8 @@ Para fazer o render tenho que dividir cada atributo no estilo SOLID e passar o u
 
 
 Tenho que fazer o controler para que vai receber um adapter e um component 
+
+
+*****====> TENHO QUE IMPLEMENTAR O ROUTER PARA PEGAR AS PAGINAS MUDANDO O STATE COM: 
+    window.history.pushState({state: "estado"},"Titulo", location.pathname+"/caminho")
+    window.history.pushState({state: "estado"},"Titulo", "/caminho") // assim funciona melhor

@@ -5,41 +5,59 @@ import FactoryAttribute from "./Nucleo/factory/attribute.js";
 const memoria = new LocalStorage()
 const app = document.getElementById("app")
 //new Botao(app, new CriarCaso(new CriarEstacionamento(memoria)))
-
-const myApp = {
-    children: [
-        {
-            type: "botao",
-            adapter: { type: "criacaso", usecase: "criaestacionamento" }
+const estacionamento = [
+    //isso pode ser uma pagina 
+    {
+        type: "botao",
+        adapter: { type: "criacaso", usecase: "criaestacionamento" }
+    },
+    {
+        type: "botao",
+        adapter: { type: "criacaso", usecase: "criacarro" }
+    },
+    {
+        type: "listahorizontal",
+        title: "Lista de Carros",
+        list: {
+            collection: "Carros",
+            component: { type: "card", adapter: { type: "carrocard" } }
         },
-        {
-            type: "botao",
-            adapter: { type: "criacaso", usecase: "criacarro" }
-        },
-        {
-            type: "listahorizontal",
-            title: "Lista de Carros",
-            list: {
-                collection: "Carros",
-                component: { type: "card", adapter: { type: "carrocard" } }
-            },
-        },
-        {
-            type: "listahorizontal",
-            title: "Lista de Estacionamentos",
-            list: {
-                collection: "Estacionamentos",
-                component: {
-                    type: "card", 
-                    adapter: { type: "estacionamentocard" }, 
-                    controller: { 
-                        type: "mostraestacionamento", 
-                        adapter: { type: "mostraestacionamento" } 
-                    }
+    },
+    {
+        type: "listahorizontal",
+        title: "Lista de Estacionamentos",
+        list: {
+            collection: "Estacionamentos",
+            component: {
+                type: "card",
+                adapter: { type: "estacionamentocard" },
+                controller: {
+                    type: "mostraestacionamento",
+                    adapter: { type: "mostraestacionamento" }
                 }
-            },
+            }
+        },
+    }
+]
+{
+    pages: [
+        {
+            route: "/estacionamento",
+            auth: "",
+            children: estacionamento
+        },
+        {
+            route: "/dashboard",
+            auth: "accessController",
+            children: []
+        },
+        {
+            route: "/social/:id"
         }
     ]
+}
+const myApp = {
+    children: estacionamento
 }
 
 myApp.children.forEach(c => {
@@ -83,6 +101,7 @@ memoria.pegaVarios("Carros").forEach(c => {
 
 listaCarros.mostrar(app)
 console.log(listaCarros); */
+
 
 
 /* {
